@@ -6,14 +6,17 @@ const requestHandler = (req, res) => {
   const method = req.method;
 
   if (url === "/") {
-    const userWelcomeHtml = fs.readFileSync("user-welcome.html", "utf-8");
+    const userWelcomeHtml = fs.readFileSync(
+      "./Public/user-welcome.html",
+      "utf-8"
+    );
 
     res.write(userWelcomeHtml);
 
     res.end();
   }
   if (url === "/show-users" && method === "GET") {
-    let userListHtml = fs.readFileSync("show-users.html", "utf-8");
+    let userListHtml = fs.readFileSync("./Public/show-users.html", "utf-8");
 
     // Inject the users into the HTML
     const userItems = users.map((user) => `<li>${user}</li>`).join("");
@@ -24,7 +27,7 @@ const requestHandler = (req, res) => {
     res.end();
   }
   if (url === "/create-user" && method === "POST") {
-    const createNewUser = fs.readFileSync("create-user.html", "utf-8");
+    const createNewUser = fs.readFileSync("./Public/create-user.html", "utf-8");
 
     res.write(createNewUser);
     res.end();
